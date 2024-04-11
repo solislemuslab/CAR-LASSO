@@ -35,12 +35,12 @@ head(dt)
 Unlike `CARlasso`, we do not really need to have a formula (because we do not have predictors, only responses). To use the Normal version, we should set `link="identity"` which is the default. 
 
 
-```{r ar1example_first}
+```{r ar1example_first, eval = FALSE}
 glassores <- bGlasso(data = dt)
 plot(glassores)
 ```
 
-We could see the false link due to the common input. [???]
+Some of the connections are actually due to predictors. 
 
 ## GLASSO Network for compositional data
 
@@ -55,7 +55,7 @@ dt <- mgp154[,c("Alistipes","Bacteroides",
 
 To run the composition model in `bGlasso`, we need to set `link="logit"`
 
-```{r compositional1}
+```{r compositional1, eval = FALSE}
 gut_res <- bGlasso( data = dt,link = "logit", 
                     n_iter = 2000, 
                     n_burn_in = 1000, thin_by = 2)
@@ -71,7 +71,7 @@ We will use the same compositional data as before to illustrate the counts model
 
 To run the count model, we need to set `link="log"`. Note that we only include the first 4 responses:
 
-```{r counting}
+```{r counting, eval = FALSE}
 gut_res <- gut_res <- bGlasso( data = dt[,1:4],link = "log", 
                     n_iter = 2000, 
                     n_burn_in = 1000, thin_by = 2)
